@@ -11,7 +11,7 @@ router.get("/users", (req, res) => {
         }
     ];
 
-    res.json(req.data);
+    res.status(200).json(req.data);
     
 });
 
