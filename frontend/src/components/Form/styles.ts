@@ -115,7 +115,7 @@ export const Container = styled.form<{theme: string}>`
         cursor: pointer;
         padding: 8px 12px;
         color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
-        transition: color .2s,  background .2s;
+        transition: color .2s,  background .2s, border .2s;
 
         display: flex;
         justify-content: center;
@@ -129,11 +129,13 @@ export const Container = styled.form<{theme: string}>`
         &.btn-facebook:hover {
             color: #FFF;
             background-color: #3c5a99;
+            border-color: #3c5a99;
         }
 
         &.btn-twitter:hover {
             color: #FFF;
             background-color: #1DA1F2;
+            border-color: #1DA1F2;
         }
     }
 
