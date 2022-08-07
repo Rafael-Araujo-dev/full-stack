@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 
 import Form from "../components/Form";
+import { Checkbox } from "@chakra-ui/react";
 
 import { FaSun, FaMoon } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
@@ -15,15 +16,10 @@ const Main = styled.main<{ theme: string }>`
   width: 100%;
   background-color: ${(props) =>
     props.theme === "Light" ? "#FFF" : "#151515"};
-  /* overflow: auto; */
-
   transition: background 0.2s;
 
-  & > * {
-    flex: 1;
-  }
-
   aside {
+    flex: 1;
     background-image: ${(props) =>
       props.theme === "Light"
         ? `url("./bgImage.jpg")`
@@ -39,11 +35,11 @@ const Main = styled.main<{ theme: string }>`
   }
 
   div.content {
+    flex: 1;
     background-color: ${(props) =>
       props.theme === "Light" ? "#FFF" : "#151515"};
     transition-property: background-color;
     transition-duration: 200ms;
-    /* max-height: 100vh; */
     padding: 20px 0;
     overflow: auto;
     margin: auto;
@@ -53,7 +49,6 @@ const Main = styled.main<{ theme: string }>`
       font-size: 2.5rem;
       font-weight: 400;
       text-align: center;
-      /* margin: 60px 0 0 0; */
       color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
       transition: color 0.2s;
     }
@@ -71,6 +66,20 @@ const Main = styled.main<{ theme: string }>`
     border: none;
     background: transparent;
     color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
+  }
+
+  .checkbox {
+    span:first-of-type {
+      background-color: ${(props) =>
+        props.theme === "Light" ? "#FFF" : "#101010"};
+      color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
+      transition: border 0.2s, background-color 0.2s, color 0.2s;
+      width: 20px;
+      height: 20px;
+      border-radius: 4px;
+      border: 1.5px solid
+        ${(props) => (props.theme === "Light" ? "#808080" : "#303030")};
+    }
   }
 `;
 
@@ -123,19 +132,14 @@ function SignIn() {
             />
           </div>
           <div>
-            <input
-              type="checkbox"
-              name="rememberPassword"
-              id="rememberPassword"
-              onChange={(e) => setRememberPassword(e.target.checked)}
-            />
-            <label
-              htmlFor="rememberPassword"
-              aria-checked={rememberPassword}
-              role="checkbox"
+            <Checkbox
+              colorScheme="red"
+              className="checkbox"
+              isChecked={rememberPassword}
+              onChange={() => setRememberPassword(!rememberPassword)}
             >
               Remember Password
-            </label>
+            </Checkbox>
           </div>
           <input
             type="submit"
