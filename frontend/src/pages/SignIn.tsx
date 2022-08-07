@@ -159,7 +159,7 @@ function SignIn() {
           </div>
 
           <div>
-            <button onClick={(e) => e.preventDefault()}>
+            <button className="btn-google" onClick={(e) => e.preventDefault()}>
               <FcGoogle
                 size="1.5rem"
                 role="img"

@@ -64,7 +64,7 @@ export const Container = styled.form<{theme: string}>`
         background-color: ${ props => props.theme === "Light" ? "#202020" : "#000"};
 
         &:hover {
-            background-color: ${ props => props.theme === "Light" ? "#202020" : "#303030"};
+            background-color: ${ props => props.theme === "Light" ? "#404040" : "#303030"};
         }
     }
 
@@ -115,7 +115,7 @@ export const Container = styled.form<{theme: string}>`
         cursor: pointer;
         padding: 8px 12px;
         color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
-        transition: color .2s,  background .2s, border .2s;
+        transition: color .2s,  background-color .2s, border .2s;
 
         display: flex;
         justify-content: center;
@@ -123,7 +123,13 @@ export const Container = styled.form<{theme: string}>`
         column-gap: 15px;
 
         &:hover {
-            background-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#202020")}; ;
+            background-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#202020")};
+        }
+
+        &.btn-google:hover {
+            background-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#FFF")};
+            color: #202020;
+            border-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#FFF")};
         }
 
         &.btn-facebook svg {
