@@ -121,9 +121,19 @@ export const Container = styled.form<{theme: string}>`
         justify-content: center;
         align-items: center;
         column-gap: 15px;
-        
+
         &:hover {
             background-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#202020")}; ;
+        }
+
+        &.btn-facebook:hover {
+            color: #FFF;
+            background-color: #3c5a99;
+        }
+
+        &.btn-twitter:hover {
+            color: #FFF;
+            background-color: #1DA1F2;
         }
     }
 

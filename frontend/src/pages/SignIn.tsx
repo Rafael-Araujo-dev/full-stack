@@ -166,9 +166,11 @@ function SignIn() {
           </div>
 
           <div>
-            <button onClick={(e) => e.preventDefault()}>
+            <button
+              className="btn-facebook"
+              onClick={(e) => e.preventDefault()}
+            >
               <GrFacebook
-                color={theme === "Light" ? "#3c5a99" : "#FFF"}
                 size="1.5rem"
                 role="img"
                 aria-label="Authorizes with an Facebook account"
@@ -178,9 +180,8 @@ function SignIn() {
           </div>
 
           <div>
-            <button onClick={(e) => e.preventDefault()}>
+            <button className="btn-twitter" onClick={(e) => e.preventDefault()}>
               <GrTwitter
-                color="#1DA1F2"
                 size="1.5rem"
                 role="img"
                 aria-label="Authorizes with an Twitter account"
