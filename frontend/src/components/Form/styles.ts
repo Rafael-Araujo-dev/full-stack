@@ -81,7 +81,7 @@ export const Container = styled.form<{theme: string}>`
         text-decoration: none;
         font-weight: 500;
         transition: color .2s;
-        color: ${(props) => (props.theme === "Light" ? "#0000cb" : "#EEE")};
+        color: ${(props) => (props.theme === "Light" ? "#1976D2" : "#EEE")};
     }
 
     a:hover {
@@ -126,16 +126,34 @@ export const Container = styled.form<{theme: string}>`
             background-color: ${(props) => (props.theme === "Light" ? "#EEE" : "#202020")}; ;
         }
 
+        &.btn-facebook svg {
+            color: ${ props => props.theme === "Light" ? "#3c5a99" : "#FFF"};
+            transition: color .2s;
+        }
+
         &.btn-facebook:hover {
             color: #FFF;
             background-color: #3c5a99;
             border-color: #3c5a99;
+
+            svg {
+                color: #FFF;
+            }
+        }
+
+        &.btn-twitter svg {
+            color: #1DA1F2;
+            transition: color .2s;
         }
 
         &.btn-twitter:hover {
             color: #FFF;
             background-color: #1DA1F2;
             border-color: #1DA1F2;
+            
+            svg {
+                color: #FFF;
+            }
         }
     }
 
