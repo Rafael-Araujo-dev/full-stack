@@ -161,6 +161,21 @@ export const Container = styled.form<{theme: string}>`
                 color: #FFF;
             }
         }
+
+        &.btn-github svg {
+            color: ${ props => props.theme === "Light" ? "#202020" : "#FFF"};
+            transition: color .2s;
+        }
+
+        &.btn-github:hover {
+            color: #FFF;
+            background-color: #202020;
+            border-color: #202020;
+            
+            svg {
+                color: #FFF;
+            }
+        }
     }
 
 `

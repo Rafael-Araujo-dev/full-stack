@@ -7,7 +7,7 @@ import { Checkbox } from "@chakra-ui/react";
 
 import { FaSun, FaMoon } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { GrFacebook, GrTwitter } from "react-icons/gr";
+import { GrFacebook, GrTwitter, GrGithub } from "react-icons/gr";
 
 const Main = styled.main<{ theme: string }>`
   display: flex;
@@ -191,6 +191,17 @@ function SignIn() {
                 aria-label="Authorizes with an Twitter account"
               />
               Authorize with Twitter
+            </button>
+          </div>
+
+          <div>
+            <button className="btn-github" onClick={(e) => e.preventDefault()}>
+              <GrGithub
+                size="1.5rem"
+                role="img"
+                aria-label="Authorizes with an GitHub account"
+              />
+              Authorize with GitHub
             </button>
           </div>
         </Form>
