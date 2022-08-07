@@ -4,9 +4,6 @@ import Home from "./pages/Home";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
 
-// Components
-import Navbar from "./components/layout/Navbar";
-
 function App() {
   return (
     <Router>
