@@ -1,0 +1,18 @@
+{
+  "name": "full-stack",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Rafael-Araujo-dev/full-stack.git",
+  "author": "Rafael-Araujo-dev <web.dev@orafaelribeiro.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "server": "nodemon backend/src/server.js",
+    "client": "npm start --prefix frontend",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false yarn add --prefix frontend && yarn build --prefix frontend"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.19"
+  }
+}
