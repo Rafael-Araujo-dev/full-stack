@@ -1,13 +1,15 @@
+import React, { lazy, Suspense } from "react";
 import { useState } from "react";
 import styled from "styled-components";
+
 import { Link } from "react-router-dom";
-
-import Form from "../components/Form";
 import { Checkbox } from "@chakra-ui/react";
-
 import { FaSun, FaMoon } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GrFacebook, GrTwitter, GrGithub } from "react-icons/gr";
+import ContentLoader from "react-content-loader";
+
+const Form = React.lazy(() => import("../components/Form"));
 
 const Main = styled.main<{ theme: string }>`
   display: flex;
@@ -112,99 +114,134 @@ function SignIn() {
       </button>
       <div className="content">
         <h1>Sign In</h1>
-        <Form theme={theme}>
-          <div className="group">
-            <label htmlFor="username">Username</label>
-            <input
-              type="text"
-              name="username"
-              id="username"
-              autoComplete="username"
-            />
-          </div>
-          <div className="group">
-            <label htmlFor="password">Password</label>
-            <input
-              type="password"
-              name="password"
-              id="password"
-              autoComplete="off"
-            />
-          </div>
-          <div>
-            <Checkbox
-              colorScheme="red"
-              className="checkbox"
-              isChecked={rememberPassword}
-              onChange={() => setRememberPassword(!rememberPassword)}
+        <Suspense
+          fallback={
+            <div
+              style={{
+                padding: "0 5%",
+                maxWidth: 500,
+                margin: "auto",
+              }}
             >
-              Remember Password
-            </Checkbox>
-          </div>
-          <input
-            type="submit"
-            value="Login"
-            onClick={(e) => e.preventDefault()}
-          />
-          <div>
-            <p>
-              Don't have an account yet? <Link to="/SignUp">Sign Up</Link>
-            </p>
-          </div>
-
-          <div className="divider">
-            <span />
-            or
-            <span />
-          </div>
-
-          <div>
-            <button className="btn-google" onClick={(e) => e.preventDefault()}>
-              <FcGoogle
-                size="1.5rem"
-                role="img"
-                aria-label="Authorizes with an Google account"
+              <ContentLoader height="625" width="100%">
+                <rect x="0" y="15" rx="4" ry="4" width="150" height="25" />
+                <rect x="0" y="45" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="100" rx="4" ry="4" width="150" height="25" />
+                <rect x="0" y="130" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="185" rx="4" ry="4" width="200" height="30" />
+                <rect x="0" y="240" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="310" rx="4" ry="4" width="100%" height="2" />
+                <rect x="0" y="345" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="400" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="460" rx="4" ry="4" width="100%" height="35" />
+                <rect x="0" y="515" rx="4" ry="4" width="100%" height="35" />
+              </ContentLoader>
+            </div>
+          }
+        >
+          <Form theme={theme}>
+            <div className="group">
+              <label htmlFor="username">Username</label>
+              <input
+                type="text"
+                name="username"
+                id="username"
+                autoComplete="username"
               />
-              Authorize with Google
-            </button>
-          </div>
-
-          <div>
-            <button
-              className="btn-facebook"
+            </div>
+            <div className="group">
+              <label htmlFor="password">Password</label>
+              <input
+                type="password"
+                name="password"
+                id="password"
+                autoComplete="off"
+              />
+            </div>
+            <div>
+              <Checkbox
+                colorScheme="red"
+                className="checkbox"
+                isChecked={rememberPassword}
+                onChange={() => setRememberPassword(!rememberPassword)}
+              >
+                Remember Password
+              </Checkbox>
+            </div>
+            <input
+              type="submit"
+              value="Login"
               onClick={(e) => e.preventDefault()}
-            >
-              <GrFacebook
-                size="1.5rem"
-                role="img"
-                aria-label="Authorizes with an Facebook account"
-              />
-              Authorize with Facebook
-            </button>
-          </div>
+            />
+            <div>
+              <p>
+                Don't have an account yet? <Link to="/SignUp">Sign Up</Link>
+              </p>
+            </div>
 
-          <div>
-            <button className="btn-twitter" onClick={(e) => e.preventDefault()}>
-              <GrTwitter
-                size="1.5rem"
-                role="img"
-                aria-label="Authorizes with an Twitter account"
-              />
-              Authorize with Twitter
-            </button>
-          </div>
+            <div className="divider">
+              <span />
+              or
+              <span />
+            </div>
 
-          <div>
-            <button className="btn-github" onClick={(e) => e.preventDefault()}>
-              <GrGithub
-                size="1.5rem"
-                role="img"
-                aria-label="Authorizes with an GitHub account"
-              />
-              Authorize with GitHub
-            </button>
-          </div>
-        </Form>
+            <div>
+              <button
+                className="btn-google"
+                onClick={(e) => e.preventDefault()}
+              >
+                <FcGoogle
+                  size="1.5rem"
+                  role="img"
+                  aria-label="Authorizes with an Google account"
+                />
+                Authorize with Google
+              </button>
+            </div>
+
+            <div>
+              <button
+                className="btn-facebook"
+                onClick={(e) => e.preventDefault()}
+              >
+                <GrFacebook
+                  size="1.5rem"
+                  role="img"
+                  aria-label="Authorizes with an Facebook account"
+                />
+                Authorize with Facebook
+              </button>
+            </div>
+
+            <div>
+              <button
+                className="btn-twitter"
+                onClick={(e) => e.preventDefault()}
+              >
+                <GrTwitter
+                  size="1.5rem"
+                  role="img"
+                  aria-label="Authorizes with an Twitter account"
+                />
+                Authorize with Twitter
+              </button>
+            </div>
+
+            <div>
+              <button
+                className="btn-github"
+                onClick={(e) => e.preventDefault()}
+              >
+                <GrGithub
+                  size="1.5rem"
+                  role="img"
+                  aria-label="Authorizes with an GitHub account"
+                />
+                Authorize with GitHub
+              </button>
+            </div>
+          </Form>
+        </Suspense>
       </div>
     </Main>
   );
