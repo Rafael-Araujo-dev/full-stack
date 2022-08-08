@@ -1,6 +1,6 @@
-import React, { lazy, Suspense, useEffect } from "react";
-import { useState } from "react";
+import React, { lazy, Suspense, useState, useContext } from "react";
 import styled from "styled-components";
+import { ThemeContext } from "../context/ThemeProvider";
 
 import { Link } from "react-router-dom";
 import { Checkbox } from "@chakra-ui/react";
@@ -89,28 +89,31 @@ const Main = styled.main<{ theme: string }>`
 
 function SignIn() {
   const [rememberPassword, setRememberPassword] = useState<boolean>(false);
-  const [theme, setTheme] = useState<any>(
-    localStorage.getItem("theme") ? localStorage.getItem("theme") : "Light"
-  );
 
-  const themeSwitcher = () => {
-    if (localStorage && localStorage.getItem("theme")) {
-      const currentTheme = localStorage.getItem("theme");
+  const { theme, themeSwitcher } = useContext(ThemeContext);
 
-      if (currentTheme === "Light") {
-        localStorage.setItem("theme", "Dark");
-        setTheme("Dark");
-      } else {
-        localStorage.setItem("theme", "Light");
-        setTheme("Light");
-      }
+  // const [theme, setTheme] = useState<any>(
+  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "Light"
+  // );
 
-      console.log(currentTheme);
-    } else {
-      localStorage.setItem("theme", "Dark");
-      setTheme("Dark");
-    }
-  };
+  // const themeSwitcher = () => {
+  //   if (localStorage && localStorage.getItem("theme")) {
+  //     const currentTheme = localStorage.getItem("theme");
+
+  //     if (currentTheme === "Light") {
+  //       localStorage.setItem("theme", "Dark");
+  //       setTheme("Dark");
+  //     } else {
+  //       localStorage.setItem("theme", "Light");
+  //       setTheme("Light");
+  //     }
+
+  //     console.log(currentTheme);
+  //   } else {
+  //     localStorage.setItem("theme", "Dark");
+  //     setTheme("Dark");
+  //   }
+  // };
 
   return (
     <Main theme={theme}>
