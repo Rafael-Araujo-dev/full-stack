@@ -9,8 +9,7 @@
     "start": "node backend/src/server.js",
     "server": "nodemon backend/src/server.js",
     "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix frontend && npm run build --prefix frontend"
+    "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
     "nodemon": "^2.0.19"
