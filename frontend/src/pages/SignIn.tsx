@@ -125,7 +125,12 @@ function SignIn() {
                 margin: "auto",
               }}
             >
-              <ContentLoader height="625" width="100%">
+              <ContentLoader
+                height="625"
+                width="100%"
+                backgroundColor={theme === "Light" ? "#f6f6ef" : "#202020"}
+                foregroundColor={theme === "Light" ? "#e8e8e3" : "#252525"}
+              >
                 <rect x="0" y="15" rx="4" ry="4" width="150" height="25" />
                 <rect x="0" y="45" rx="4" ry="4" width="100%" height="35" />
                 <rect x="0" y="100" rx="4" ry="4" width="150" height="25" />
@@ -141,32 +146,6 @@ function SignIn() {
             </div>
           }
         >
-          <div
-            style={{
-              padding: "0 5%",
-              maxWidth: 500,
-              margin: "auto",
-            }}
-          >
-            <ContentLoader
-              height="625"
-              width="100%"
-              backgroundColor={theme === "Light" ? "#f6f6ef" : "#202020"}
-              foregroundColor={theme === "Light" ? "#e8e8e3" : "#252525"}
-            >
-              <rect x="0" y="15" rx="4" ry="4" width="150" height="25" />
-              <rect x="0" y="45" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="100" rx="4" ry="4" width="150" height="25" />
-              <rect x="0" y="130" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="185" rx="4" ry="4" width="200" height="30" />
-              <rect x="0" y="240" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="310" rx="4" ry="4" width="100%" height="2" />
-              <rect x="0" y="345" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="400" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="460" rx="4" ry="4" width="100%" height="35" />
-              <rect x="0" y="515" rx="4" ry="4" width="100%" height="35" />
-            </ContentLoader>
-          </div>
           <Form theme={theme}>
             <div className="group">
               <label htmlFor="username">Username</label>
