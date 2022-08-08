@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from "react";
+import React, { lazy, Suspense, useEffect } from "react";
 import { useState } from "react";
 import styled from "styled-components";
 
@@ -89,17 +89,33 @@ const Main = styled.main<{ theme: string }>`
 
 function SignIn() {
   const [rememberPassword, setRememberPassword] = useState<boolean>(false);
-  const [theme, setTheme] = useState("Light");
+  const [theme, setTheme] = useState<any>(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "Light"
+  );
+
+  const themeSwitcher = () => {
+    if (localStorage && localStorage.getItem("theme")) {
+      const currentTheme = localStorage.getItem("theme");
+
+      if (currentTheme === "Light") {
+        localStorage.setItem("theme", "Dark");
+        setTheme("Dark");
+      } else {
+        localStorage.setItem("theme", "Light");
+        setTheme("Light");
+      }
+
+      console.log(currentTheme);
+    } else {
+      localStorage.setItem("theme", "Dark");
+      setTheme("Dark");
+    }
+  };
 
   return (
     <Main theme={theme}>
       <aside />
-      <button
-        className="theme-toggle"
-        onClick={() =>
-          theme === "Light" ? setTheme("Dark") : setTheme("Light")
-        }
-      >
+      <button className="theme-toggle" onClick={() => themeSwitcher()}>
         {theme === "Light" ? (
           <FaMoon
             size="1.5rem"

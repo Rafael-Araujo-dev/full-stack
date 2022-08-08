@@ -1,7 +1,7 @@
 import { Container } from "./styles";
 
 interface Properties {
-  theme?: string;
+  theme?: string | null;
   children?: React.ReactNode;
 }
 
