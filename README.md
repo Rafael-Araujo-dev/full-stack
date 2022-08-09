@@ -1,5 +1,12 @@
 # express-app
 
+.ENV
+
+```sh
+    NODE_ENV=development
+    MONGO_URI=replaces_with_your_MongoDB_connection_string_here
+```
+
 NPM
 
 ```json
