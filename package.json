@@ -8,8 +8,8 @@
   "scripts": {
     "start": "node backend/src/server.js",
     "server": "nodemon backend/src/server.js",
-    "client": "npm start --prefix frontend",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "client": "yarn --cwd frontend start",
+    "dev": "concurrently \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "nodemon": "^2.0.19",
