@@ -3,9 +3,9 @@
 .ENV
 
 ```sh
-    NODE_ENV=development
-    PORT=defines_the_port_where_the_app_will_run
-    MONGO_URI=replaces_with_your_MongoDB_connection_string_here
+NODE_ENV=development
+PORT=defines_the_port_where_the_app_will_run
+MONGO_URI=replaces_with_your_MongoDB_connection_string_here
 ```
 
 NPM
