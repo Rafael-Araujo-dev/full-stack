@@ -18,8 +18,11 @@ app.use(helmet());
 app.disable("x-powered-by");
 app.use(cors(corsOptions));
 
+app.use(express.json()); // Define os dados recebidos das requisições sendo do tipo JSON Object
+app.use(express.urlencoded({ extended: false}));
+
 // Definição das rotas para a nossa aplicação
-app.use("/api", require("./routes/user"));
+app.use("/api/users", require("./routes/userRoutes"));
 
 // Inicialização da aplicação
 app.listen(_PORT, () => console.log(`Server is running on port ${_PORT}`));
