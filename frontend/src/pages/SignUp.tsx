@@ -164,7 +164,7 @@ function SignUp() {
               />
             </div>
             <div className="group">
-              <label htmlFor="username">Bithdate</label>
+              <label htmlFor="birthdate">Birthdate</label>
               <input
                 type="date"
                 name="birthdate"
@@ -182,11 +182,11 @@ function SignUp() {
               />
             </div>
             <div className="group">
-              <label htmlFor="password">Confirm Password</label>
+              <label htmlFor="confirmPassword">Confirm Password</label>
               <input
                 type="password"
-                name="password"
-                id="password"
+                name="confirmPassword"
+                id="confirmPassword"
                 autoComplete="off"
               />
             </div>
