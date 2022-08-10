@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-// Defina um Schema para collection user
+// Define um Schema para collection user
 const userSchema = mongoose.Schema(
     {
         username: {
@@ -42,4 +42,5 @@ const userSchema = mongoose.Schema(
     }
 );
 
+// Exporta o Schema para collection User
 module.exports = mongoose.model("User", userSchema);
