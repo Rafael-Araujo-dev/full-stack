@@ -27,7 +27,7 @@ export const Container = styled.form<{theme: string}>`
         }
     }
 
-    input[type="text"], input[type="password"] {
+    input[type="text"], input[type="password"], input[type="email"],  input[type="date"] {
         width: 100%;
         padding: 4px 8px;
         font-size: 1.1rem;
@@ -40,7 +40,7 @@ export const Container = styled.form<{theme: string}>`
         color: ${ props => props.theme === "Light" ? "#202020" : "#FFF"};
     }
 
-    input[type="text"]:focus,  input[type="password"]:focus {
+    input[type="text"]:focus,  input[type="password"]:focus, input[type="email"]:focus, input[type="date"]:focus {
         border: 1.5px solid ${ props => props.theme === "Light" ? "#202020" : "#808080"};
     }
 
