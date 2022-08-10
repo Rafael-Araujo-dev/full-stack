@@ -25,6 +25,7 @@ Sign Up Page
 NODE_ENV=development
 PORT=defines_the_port_where_the_app_will_run
 MONGO_URI=replaces_with_your_MongoDB_connection_string_here
+JWT_SECRET=defines_a_secret_key
 ```
 
 NPM
