@@ -48,6 +48,8 @@ const Main = styled.main<{ theme: string }>`
     overflow: auto;
     margin: auto;
 
+    animation: fadeIn_anim 0.5s;
+
     h1 {
       font-family: "Roboto", sans-serif;
       font-size: 2.5rem;
@@ -92,48 +94,25 @@ function SignIn() {
 
   const { theme, themeSwitcher } = useContext(ThemeContext);
 
-  // const [theme, setTheme] = useState<any>(
-  //   localStorage.getItem("theme") ? localStorage.getItem("theme") : "Light"
-  // );
-
-  // const themeSwitcher = () => {
-  //   if (localStorage && localStorage.getItem("theme")) {
-  //     const currentTheme = localStorage.getItem("theme");
-
-  //     if (currentTheme === "Light") {
-  //       localStorage.setItem("theme", "Dark");
-  //       setTheme("Dark");
-  //     } else {
-  //       localStorage.setItem("theme", "Light");
-  //       setTheme("Light");
-  //     }
-
-  //     console.log(currentTheme);
-  //   } else {
-  //     localStorage.setItem("theme", "Dark");
-  //     setTheme("Dark");
-  //   }
-  // };
-
   return (
     <Main theme={theme}>
       <aside />
-      <button className="theme-toggle" onClick={() => themeSwitcher()}>
-        {theme === "Light" ? (
-          <FaMoon
-            size="1.5rem"
-            role="img"
-            aria-label="Changes theme to Dark Mode"
-          />
-        ) : (
-          <FaSun
-            size="1.5rem"
-            role="img"
-            aria-label="Changes theme to Light Mode"
-          />
-        )}
-      </button>
       <div className="content">
+        <button className="theme-toggle" onClick={() => themeSwitcher()}>
+          {theme === "Light" ? (
+            <FaMoon
+              size="1.5rem"
+              role="img"
+              aria-label="Changes theme to Dark Mode"
+            />
+          ) : (
+            <FaSun
+              size="1.5rem"
+              role="img"
+              aria-label="Changes theme to Light Mode"
+            />
+          )}
+        </button>
         <h1>Sign In</h1>
         <Suspense
           fallback={
