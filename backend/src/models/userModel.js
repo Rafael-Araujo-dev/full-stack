@@ -36,6 +36,9 @@ const userSchema = mongoose.Schema(
         bio: {
             type: String, // Define o tipo do valor
         }
+    },
+    {
+        timestamps: true,
     }
 );
 
