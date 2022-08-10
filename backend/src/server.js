@@ -5,6 +5,7 @@ const connectDB = require("./config/db"); // Importa função de conexão com o 
 // Importação dos middlewares
 const helmet  = require("./middlewares/helmet");
 const { cors, corsOptions } = require("./middlewares/cors");
+const errorHandler = require("./middlewares/errorHandler");
 
 // Define a porta onde nossa aplicação rodará
 const _PORT = process.env.PORT || 5000;
@@ -23,6 +24,9 @@ app.use(express.urlencoded({ extended: false}));
 
 // Definição das rotas para a nossa aplicação
 app.use("/api/users", require("./routes/userRoutes"));
+
+// Adiciona um manipulador de erro para nossa aplicação
+app.use(errorHandler);
 
 // Inicialização da aplicação
 app.listen(_PORT, () => console.log(`Server is running on port ${_PORT}`));
