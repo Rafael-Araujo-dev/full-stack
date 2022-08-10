@@ -1,5 +1,6 @@
 const cors = require("cors");
 
+// Configurações do cors
 const corsOptions = {
     // Define as origens permitidas para requisições
     origin: [ 
