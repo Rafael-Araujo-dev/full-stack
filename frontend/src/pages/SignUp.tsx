@@ -1,6 +1,7 @@
 import React, { lazy, Suspense, useState, useContext, ReactNode } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
+import { api } from "@api/api";
 
 import { Link } from "react-router-dom";
 import { Checkbox } from "@chakra-ui/react";
