@@ -249,7 +249,6 @@ function SignUp() {
             notify(response.data.message, _theme, "success");
           })
           .catch((err) => {
-            console.log(err);
             notify(err.response.data.message, _theme, "error");
           });
       }
