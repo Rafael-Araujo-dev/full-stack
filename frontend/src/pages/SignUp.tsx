@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useState, useContext, ReactNode } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
 import { api } from "../api/api";
+import axios from "axios";
 
 import { Link } from "react-router-dom";
 import { Checkbox } from "@chakra-ui/react";
@@ -245,7 +246,6 @@ function SignUp() {
           },
         })
           .then((response) => {
-            console.log(response);
             notify(response.data.message, _theme, "success");
           })
           .catch((err) => {
@@ -279,6 +279,15 @@ function SignUp() {
           )}
         </button>
         <h1>Sign Up</h1>
+        <button
+          onClick={() => {
+            axios
+              .get("http://18.234.45.55:8080/test")
+              .then((response) => console.log(response));
+          }}
+        >
+          test
+        </button>
         <Suspense
           fallback={
             <div
