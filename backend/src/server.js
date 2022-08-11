@@ -26,11 +26,6 @@ app.use(express.urlencoded({ extended: false}));
 // Definição das rotas para a nossa aplicação
 app.use("/api/users", require("./routes/userRoutes"));
 
-app.use("/cors", (req, res) => {
-    res.status(200).json(corsOptions)
-})
-
-
 // Adiciona um manipulador de erro para nossa aplicação
 app.use(errorHandler);
 

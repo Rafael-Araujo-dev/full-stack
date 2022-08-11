@@ -237,7 +237,6 @@ function SignUp() {
         const Register = await api({
           method: "POST",
           url: "/users/register",
-          withCredentials: true,
           data: {
             username: username,
             email: email,
