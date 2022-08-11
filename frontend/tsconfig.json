@@ -21,6 +21,7 @@
     "jsx": "react-jsx",
     "baseUrl": "./",
     "paths": {
+      "@api/*": ["src/api/*"],
       "@context/*": ["src/context/*"],
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
