@@ -234,16 +234,22 @@ function SignUp() {
         validated.password &&
         validated.confirmPassword
       ) {
-        const Register = await api
-          .post("/users/register", {
+        const Register = await api({
+          method: "POST",
+          url: "/users/register",
+          timeout: 5000,
+          data: {
             username: username,
             email: email,
             birthdate: birthdate,
+            password: password,
+          },
+        })
+          .then((response) => {
+            console.log(response);
+            notify(response.data.message, _theme, "success");
           })
-          .then((response) => console.log(response))
-          .catch((err) => console.log(err));
-
-        // notify("User registered successfully", _theme, "success");
+          .catch((err) => notify(err.response.data.message, _theme, "error"));
       }
 
       toast.clearWaitingQueue();
