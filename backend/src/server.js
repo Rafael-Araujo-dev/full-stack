@@ -1,6 +1,7 @@
 require("dotenv").config(); // Habilita o uso de variáveis de ambiente
 const express = require("express"); // Importa framework express
 const connectDB = require("./config/db"); // Importa função de conexão com o banco de dados
+const chalk = require("chalk");
 
 // Importação dos middlewares
 const helmet  = require("./middlewares/helmet");
@@ -34,4 +35,4 @@ app.use("/test", (req, res) => {
 app.use(errorHandler);
 
 // Inicialização da aplicação
-app.listen(_PORT, () => console.log(`Server is running on port ${_PORT}`));
+app.listen(_PORT, () => console.log(chalk.bgBlue.black.bold(`Server is running on port ${_PORT}`)));
