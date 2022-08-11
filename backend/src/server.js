@@ -35,4 +35,4 @@ app.use("/test", (req, res) => {
 app.use(errorHandler);
 
 // Inicialização da aplicação
-app.listen(_PORT, () => console.log(chalk.bgBlue.black.bold(`Server is running on port ${_PORT}`)));
+app.listen(_PORT, () => console.log(chalk.blue.bold(`Server is running on port ${_PORT}`)));
