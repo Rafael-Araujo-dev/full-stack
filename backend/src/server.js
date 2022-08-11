@@ -19,11 +19,17 @@ app.use(helmet());
 app.disable("x-powered-by");
 app.use(cors(corsOptions));
 
+
 app.use(express.json()); // Define os dados recebidos das requisições sendo do tipo JSON Object
 app.use(express.urlencoded({ extended: false}));
 
 // Definição das rotas para a nossa aplicação
 app.use("/api/users", require("./routes/userRoutes"));
+
+app.use("/cors", (req, res) => {
+    res.status(200).json(corsOptions)
+})
+
 
 // Adiciona um manipulador de erro para nossa aplicação
 app.use(errorHandler);

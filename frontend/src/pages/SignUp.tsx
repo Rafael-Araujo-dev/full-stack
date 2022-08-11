@@ -237,7 +237,7 @@ function SignUp() {
         const Register = await api({
           method: "POST",
           url: "/users/register",
-          timeout: 5000,
+          withCredentials: true,
           data: {
             username: username,
             email: email,
@@ -249,7 +249,10 @@ function SignUp() {
             console.log(response);
             notify(response.data.message, _theme, "success");
           })
-          .catch((err) => notify(err.response.data.message, _theme, "error"));
+          .catch((err) => {
+            console.log(err);
+            notify(err.response.data.message, _theme, "error");
+          });
       }
 
       toast.clearWaitingQueue();
