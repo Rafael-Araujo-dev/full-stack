@@ -317,7 +317,7 @@ function SignUp() {
                 name="birthdate"
                 id="birthdate"
                 value={birthdate}
-                min="01-01-1900"
+                min="1900-01-01"
                 max={setMaxBirthdate()}
                 autoComplete="off"
                 onChange={onChangeForm}
