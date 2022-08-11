@@ -1,7 +1,7 @@
 import React, { lazy, Suspense, useState, useContext, ReactNode } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
-import { api } from "@api/api";
+import { api } from "../api/api";
 
 import { Link } from "react-router-dom";
 import { Checkbox } from "@chakra-ui/react";
@@ -234,7 +234,16 @@ function SignUp() {
         validated.password &&
         validated.confirmPassword
       ) {
-        notify("User registered successfully", _theme, "success");
+        const Register = await api
+          .post("/users/register", {
+            username: username,
+            email: email,
+            birthdate: birthdate,
+          })
+          .then((response) => console.log(response))
+          .catch((err) => console.log(err));
+
+        // notify("User registered successfully", _theme, "success");
       }
 
       toast.clearWaitingQueue();
