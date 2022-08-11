@@ -27,7 +27,7 @@ app.use(express.urlencoded({ extended: false}));
 app.use("/api/users", require("./routes/userRoutes"));
 
 app.use("/test", (req, res) => {
-    res.status(200);
+    res.status(200).json("successfully");
 })
 
 // Adiciona um manipulador de erro para nossa aplicação
