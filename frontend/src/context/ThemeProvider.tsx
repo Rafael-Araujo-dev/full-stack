@@ -5,13 +5,13 @@ const ThemeContext = createContext<any>(null);
 interface Properties {
   children?: React.ReactNode;
   value?: {
-    theme?: string;
+    _theme?: string;
     themeSwitcher?: () => void;
   };
 }
 
 const ThemeProvider = ({ children }: Properties) => {
-  const [theme, setTheme] = useState<string | null>(
+  const [_theme, setTheme] = useState<string | null>(
     localStorage.getItem("theme") ? localStorage.getItem("theme") : "Light"
   );
 
@@ -33,7 +33,7 @@ const ThemeProvider = ({ children }: Properties) => {
   };
 
   return (
-    <ThemeContext.Provider value={{ theme, themeSwitcher }}>
+    <ThemeContext.Provider value={{ _theme, themeSwitcher }}>
       {children}
     </ThemeContext.Provider>
   );

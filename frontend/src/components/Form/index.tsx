@@ -1,12 +1,17 @@
 import { Container } from "./styles";
 
 interface Properties {
-  theme?: string | null;
+  id?: string;
+  _theme?: string;
   children?: React.ReactNode;
 }
 
-function Form({ children, theme }: Properties) {
-  return <Container theme={theme}>{children}</Container>;
+function Form({ children, id, _theme }: Properties) {
+  return (
+    <Container id={id} _theme={_theme}>
+      {children}
+    </Container>
+  );
 }
 
 export default Form;

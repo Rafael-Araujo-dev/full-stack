@@ -11,19 +11,19 @@ import ContentLoader from "react-content-loader";
 
 const Form = React.lazy(() => import("../components/Form"));
 
-const Main = styled.main<{ theme: string }>`
+const Main = styled.main<{ _theme: string }>`
   display: flex;
   flex-wrap: wrap;
   height: 100%;
   width: 100%;
   background-color: ${(props) =>
-    props.theme === "Light" ? "#FFF" : "#151515"};
+    props._theme === "Light" ? "#FFF" : "#151515"};
   transition: background 0.2s;
 
   aside {
     flex: 1;
     background-image: ${(props) =>
-      props.theme === "Light"
+      props._theme === "Light"
         ? `url("./bgImage.jpg")`
         : `url("./bgImageDark.jpg")`};
     transition: background-color 0.2s, background-image 0.2s;
@@ -31,7 +31,7 @@ const Main = styled.main<{ theme: string }>`
     background-size: cover;
     background-attachment: fixed;
     background-color: ${(props) =>
-      props.theme === "Light" ? "#EEE" : "#202020"};
+      props._theme === "Light" ? "#EEE" : "#202020"};
     color: #fff;
     @media (max-width: 768px) {
       display: none;
@@ -41,7 +41,7 @@ const Main = styled.main<{ theme: string }>`
   div.content {
     flex: 1;
     background-color: ${(props) =>
-      props.theme === "Light" ? "#FFF" : "#151515"};
+      props._theme === "Light" ? "#FFF" : "#151515"};
     transition-property: background-color;
     transition-duration: 200ms;
     padding: 20px 0;
@@ -55,7 +55,7 @@ const Main = styled.main<{ theme: string }>`
       font-size: 2.5rem;
       font-weight: 400;
       text-align: center;
-      color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
+      color: ${(props) => (props._theme === "Light" ? "#202020" : "#FFF")};
       transition: color 0.2s;
     }
 
@@ -71,20 +71,20 @@ const Main = styled.main<{ theme: string }>`
     cursor: pointer;
     border: none;
     background: transparent;
-    color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
+    color: ${(props) => (props._theme === "Light" ? "#202020" : "#FFF")};
   }
 
   .checkbox {
     span:first-of-type {
       background-color: ${(props) =>
-        props.theme === "Light" ? "#FFF" : "#101010"};
-      color: ${(props) => (props.theme === "Light" ? "#202020" : "#FFF")};
+        props._theme === "Light" ? "#FFF" : "#101010"};
+      color: ${(props) => (props._theme === "Light" ? "#202020" : "#FFF")};
       transition: border 0.2s, background-color 0.2s, color 0.2s;
       width: 20px;
       height: 20px;
       border-radius: 4px;
       border: 1.5px solid
-        ${(props) => (props.theme === "Light" ? "#808080" : "#303030")};
+        ${(props) => (props._theme === "Light" ? "#808080" : "#303030")};
     }
   }
 `;
@@ -92,14 +92,14 @@ const Main = styled.main<{ theme: string }>`
 function SignIn() {
   const [rememberPassword, setRememberPassword] = useState<boolean>(false);
 
-  const { theme, themeSwitcher } = useContext(ThemeContext);
+  const { _theme, themeSwitcher } = useContext(ThemeContext);
 
   return (
-    <Main theme={theme}>
+    <Main _theme={_theme}>
       <aside />
       <div className="content">
         <button className="theme-toggle" onClick={() => themeSwitcher()}>
-          {theme === "Light" ? (
+          {_theme === "Light" ? (
             <FaMoon
               size="1.5rem"
               role="img"
@@ -126,8 +126,8 @@ function SignIn() {
               <ContentLoader
                 height="625"
                 width="100%"
-                backgroundColor={theme === "Light" ? "#f6f6ef" : "#202020"}
-                foregroundColor={theme === "Light" ? "#e8e8e3" : "#252525"}
+                backgroundColor={_theme === "Light" ? "#f6f6ef" : "#202020"}
+                foregroundColor={_theme === "Light" ? "#e8e8e3" : "#252525"}
               >
                 <rect x="0" y="15" rx="4" ry="4" width="150" height="25" />
                 <rect x="0" y="45" rx="4" ry="4" width="100%" height="35" />
@@ -144,7 +144,7 @@ function SignIn() {
             </div>
           }
         >
-          <Form theme={theme}>
+          <Form _theme={_theme}>
             <div className="group">
               <label htmlFor="username">Username</label>
               <input
