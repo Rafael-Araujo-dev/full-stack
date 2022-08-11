@@ -219,7 +219,11 @@ function SignUp() {
         const el = document.getElementById("confirmPassword") as HTMLElement;
         el?.classList.add("invalid");
         notify("Passwords do not match", _theme, "error");
-      } else validated.confirmPassword = true;
+      } else {
+        validated.confirmPassword = true;
+        const el = document.getElementById("confirmPassword") as HTMLElement;
+        el?.classList.remove("invalid");
+      }
 
       if (
         validated.fields &&
@@ -238,7 +242,7 @@ function SignUp() {
 
   return (
     <Main _theme={_theme}>
-      <ToastContainer limit={3} />
+      <ToastContainer limit={1} />
       <aside />
       <div className="content">
         <button className="theme-toggle" onClick={() => themeSwitcher()}>
