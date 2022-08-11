@@ -32,7 +32,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const emailExists = await User.findOne({email});
     if (emailExists) {
         res.status(400);
-        throw new Error("Email already exists");
+        throw new Error("Email already registred");
     }
 
     // Criptografa a senha recebida
@@ -55,6 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
             email: user.email,
             birthdate: user.birthdate,
             token: generateToken(user._id),
+            message: "User registered successfully"
         });
     } else {
         res.status(400);
