@@ -5,7 +5,7 @@ const chalk = require("chalk");
 
 // Importação dos middlewares
 const helmet  = require("./middlewares/helmet");
-const { cors, corsOptions } = require("./middlewares/cors");
+const cors = require("./middlewares/cors");
 const errorHandler = require("./middlewares/errorHandler");
 const morgan = require("./middlewares/morgan");
 
@@ -17,9 +17,9 @@ connectDB(); // Tenta se conectar com o banco de dados
 const app = express(); // Cria a apliação express
 
 // Inicialização dos middlewares e configurações
-app.use(helmet());
+app.use(helmet);
 app.disable("x-powered-by");
-app.use(cors(corsOptions));
+app.use(cors);
 app.use(morgan);
 
 

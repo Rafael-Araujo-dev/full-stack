@@ -7,4 +7,4 @@ const corsOptions = {
     optionsSucessStatus: 200, 
 }
 
-module.exports = { cors, corsOptions };
+module.exports = cors(corsOptions);
