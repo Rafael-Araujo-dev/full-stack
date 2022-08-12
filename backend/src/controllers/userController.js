@@ -4,7 +4,7 @@ const asyncHandler = require('express-async-handler');
 const chalk = require("chalk");
 const moment = require("moment");
 
-// Import the user Schema
+// Importa o Schema da collection User
 const User = require('../models/userModel');
 
 // @desc   Registra um novo usuário
@@ -48,6 +48,7 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Cria um novo usuário
     const user = await User.create({
+        status: true,
         username: username,
         email: email,
         birthdate: birthdate,
