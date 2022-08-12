@@ -28,9 +28,6 @@ app.use(express.urlencoded({ extended: false}));
 app.use("/api/users", require("./routes/userRoutes"));
 
 app.use("/test", (req, res) => {
-    console.log(req.headers['x-forwarded-for'] ||
-    req.socket.remoteAddress ||
-    null);
     res.status(200).json("successfully");
 })
 
