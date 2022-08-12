@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcryptjs");
 const asyncHandler = require('express-async-handler');
 const chalk = require("chalk");
+const moment = require("moment");
 
 // Import the user Schema
 const User = require('../models/userModel');
@@ -11,8 +12,7 @@ const User = require('../models/userModel');
 // @access public
 // @params username*, email*, birthdate*, password*
 const registerUser = asyncHandler(async (req, res) => {
-    const currentTime = new Date;
-    console.log(chalk.yellow.bold(`[POST] Path: /api/users/register | Host: ${ req.headers['host'] } | From: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Desc.: Received user register request`));
+    console.log(chalk.yellow.bold(`[POST] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Desc.: Received user register request`));
 
     // Recebe os dados da requisição
     const {
@@ -22,7 +22,7 @@ const registerUser = asyncHandler(async (req, res) => {
     // Verifica se existe algum campo obrigatorio vazio
     if (!username || !email || !birthdate || !password) {
         res.status(400);
-        console.log(chalk.red.bold(`[400] Path: /api/users/register | Host: ${ req.headers['host'] } | To: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Sent: Please add all fields`));
+        console.log(chalk.red.bold(`[400] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Sent: Please add all fields`));
         throw new Error("Please add all fields");
     }
 
@@ -30,7 +30,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const usernameExists = await User.findOne({username});
     if (usernameExists) {
         res.status(400);
-        console.log(chalk.red.bold(`[400] Path: /api/users/register | Host: ${ req.headers['host'] } | To: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Sent: User already exists`));
+        console.log(chalk.red.bold(`[400] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Sent: User already exists`));
         throw new Error("User already exists");
     }
 
@@ -38,7 +38,7 @@ const registerUser = asyncHandler(async (req, res) => {
     const emailExists = await User.findOne({email});
     if (emailExists) {
         res.status(400);
-        console.log(chalk.red.bold(`[400] Path: /api/users/register | Host: ${ req.headers['host'] } | To: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Sent: Email already registred`));
+        console.log(chalk.red.bold(`[400] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Sent: Email already registred`));
         throw new Error("Email already registred");
     }
 
@@ -64,10 +64,10 @@ const registerUser = asyncHandler(async (req, res) => {
             token: generateToken(user._id),
             message: "User registered successfully"
         });
-        console.log(chalk.green.bold(`[201] Path: /api/users/register | Host: ${ req.headers['host'] } | To: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Sent: User registred successfully`));
+        console.log(chalk.green.bold(`[201] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Sent: User registred successfully`));
     } else {
         res.status(400);
-        console.log(chalk.red.bold(`[400] Path: /api/users/register | Host: ${ req.headers['host'] } | To: ${ req.headers['x-forwarded-for'] || req.socket.remoteAddress || null } | Date: ${ currentTime} | Sent: Invalid user data`));
+        console.log(chalk.red.bold(`[400] /api/users/register | ${ req.headers["referer"] } | ${ req.headers["x-forwarded-for"] || req.socket.remoteAddress || null } | ${req.headers["x-forwarded-proto"] || req.headers["x-url-scheme"] || req.header["x-forwarded-ssl"] || null} | ${req.headers["user-agent"]} | Date: ${ moment.utc().format() } | Sent: Invalid user data`));
         throw new Error("Invalid user data");
     }
 })
