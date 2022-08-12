@@ -17,9 +17,8 @@ const accessLogStream = rfs.createStream(filename, {
 
 // Cria novos valores para log
 morgan.token("forwarded", (req, res) => { return req.headers["x-forwarded-for"] || req.socket.remoteAddress || null }); // Registro da origem
-morgan.token("message", (req, res) => { return res.data.message || null }); // Registro da mensagem enviada ao client
 morgan.token("moment", (req, res) => { return moment.utc().format() }); // Registro do momento atual da request/response
 
-module.exports = morgan(':forwarded - :remote-user [:moment] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" ":message"', {
+module.exports = morgan(':forwarded - :remote-user [:moment] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent"', {
     stream: accessLogStream
 });
