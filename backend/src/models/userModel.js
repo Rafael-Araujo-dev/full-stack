@@ -3,6 +3,9 @@ const mongoose = require("mongoose");
 // Define um Schema para collection user
 const userSchema = mongoose.Schema(
     {
+        status: {
+            type: Boolean,
+        },
         username: {
             type: String, // Define o tipo do valor
             required: [true, "Please add a username"], // Define o valor como obrigatório e envia uma mensagem caso estiver vazio 
