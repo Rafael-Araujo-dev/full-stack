@@ -12,7 +12,7 @@ const dirname = "./access-log";
 // Cria o arquivo de log
 const accessLogStream = rfs.createStream(filename, {
     interval: "1d",
-    path: path.join(dirname, "log"),
+    path: dirname,
     compress: "gzip"
 });
 
