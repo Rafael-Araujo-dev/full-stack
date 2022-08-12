@@ -29,9 +29,10 @@ app.use(express.urlencoded({ extended: false}));
 // Definição das rotas para a nossa aplicação
 app.use("/api/users", require("./routes/userRoutes"));
 
-app.use("/test", (req, res) => {
-    res.status(200).json("successfully");
-})
+// Define uma rota para verificações da API usando HealthCheck
+app.use("/status", (req, res) => {
+    res.status(200).json("active");
+});
 
 // Adiciona um manipulador de erro para nossa aplicação
 app.use(errorHandler);
