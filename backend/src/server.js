@@ -11,7 +11,7 @@ const errorHandler = require("./middlewares/errorHandler");
 // Define a porta onde nossa aplicação rodará
 const _PORT = process.env.PORT || 5000;
 
-// connectDB(); // Tenta se conectar com o banco de dados
+connectDB(); // Tenta se conectar com o banco de dados
 
 const app = express(); // Cria a apliação express
 
