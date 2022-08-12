@@ -278,15 +278,6 @@ function SignUp() {
           )}
         </button>
         <h1>Sign Up</h1>
-        <button
-          onClick={() => {
-            axios
-              .get("http://34.95.163.181:8080/test")
-              .then((response) => console.log(response));
-          }}
-        >
-          test
-        </button>
         <Suspense
           fallback={
             <div
