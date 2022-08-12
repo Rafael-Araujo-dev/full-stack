@@ -3,8 +3,6 @@ const path = require("path");
 const rfs = require("rotating-file-stream");
 const moment = require("moment");
 
-const date = new Date;
-
 // Define nome do arquivo de log
 const filename = `${moment.utc().format("YYYY-MM-DD")}.log`;
 // Define o diretório do armazenamento do log
@@ -17,9 +15,10 @@ const accessLogStream = rfs.createStream(filename, {
     compress: "gzip"
 });
 
-morgan.token("forwarded", (req, res) => { return req.headers["x-forwarded-for"] || req.socket.remoteAddress || null });
-morgan.token("message", (req, res) => { return res.data.message || null });
-morgan.token("moment", (req, res) => { return moment.utc().format() });
+// Cria novos valores para log
+morgan.token("forwarded", (req, res) => { return req.headers["x-forwarded-for"] || req.socket.remoteAddress || null }); // Registro da origem
+morgan.token("message", (req, res) => { return res.data.message || null }); // Registro da mensagem enviada ao client
+morgan.token("moment", (req, res) => { return moment.utc().format() }); // Registro do momento atual da request/response
 
 module.exports = morgan(':forwarded - :remote-user [:moment] ":method :url HTTP/:http-version" :status :res[content-length] ":referrer" ":user-agent" ":message"', {
     stream: accessLogStream
