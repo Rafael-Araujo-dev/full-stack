@@ -281,7 +281,7 @@ function SignUp() {
         <button
           onClick={() => {
             axios
-              .get("http://18.234.45.55:8080/test")
+              .get("http://34.95.163.181:8080/test")
               .then((response) => console.log(response));
           }}
         >

@@ -7,6 +7,7 @@ const chalk = require("chalk");
 const helmet  = require("./middlewares/helmet");
 const { cors, corsOptions } = require("./middlewares/cors");
 const errorHandler = require("./middlewares/errorHandler");
+const morgan = require("./middlewares/morgan");
 
 // Define a porta onde nossa aplicação rodará
 const _PORT = process.env.PORT || 5000;
@@ -19,6 +20,7 @@ const app = express(); // Cria a apliação express
 app.use(helmet());
 app.disable("x-powered-by");
 app.use(cors(corsOptions));
+app.use(morgan);
 
 
 app.use(express.json()); // Define os dados recebidos das requisições sendo do tipo JSON Object
