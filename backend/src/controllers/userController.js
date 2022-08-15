@@ -107,6 +107,9 @@ const loginUser = asyncHandler(async (req, res) => {
             token: user.token,
             message: "User logged in successfully"
         });
+    } else {
+        res.status(400);
+        throw new Error("Invalid username and/or password, please verify they are correct and try again.");
     }
 
 });
