@@ -1,6 +1,7 @@
 import React, { Suspense, useState, useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
+import { api } from "../api/api";
 
 import { Link } from "react-router-dom";
 import { Checkbox } from "@chakra-ui/react";
@@ -8,6 +9,8 @@ import { FaSun, FaMoon } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { GrFacebook, GrTwitter, GrGithub } from "react-icons/gr";
 import ContentLoader from "react-content-loader";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Form = React.lazy(() => import("../components/Form"));
 
@@ -94,8 +97,100 @@ function SignIn() {
 
   const { _theme, themeSwitcher } = useContext(ThemeContext);
 
+  const notify = (
+    message: string,
+    theme: string,
+    type: string,
+    callbackOpen?: any,
+    callbackClose?: any
+  ) => {
+    if (type === "success") {
+      toast.success(message, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: theme === "Light" ? "colored" : "dark",
+        onClose: callbackClose,
+      });
+    }
+
+    if (type === "error") {
+      toast.error(message, {
+        position: toast.POSITION.TOP_RIGHT,
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        theme: theme === "Light" ? "colored" : "dark",
+        onOpen: callbackOpen,
+        onClose: callbackClose,
+      });
+    }
+  };
+
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+  });
+
+  const { username, password } = formData;
+
+  const onChangeForm = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.classList.value === "invalid")
+      e.target.classList.remove("invalid");
+
+    setFormData((prevState) => ({
+      ...prevState,
+      [e.target.name]: e.target.value,
+    }));
+  };
+
+  const loginUser = async (e: React.FormEvent) => {
+    e.preventDefault();
+    toast.clearWaitingQueue();
+
+    let filled = false;
+
+    // Verifica se todos os campos estão preenchidos
+    if (!username || !password) {
+      notify("All fields need to be filled", _theme, "error", () => {
+        for (let i = 0; i < Object.keys(formData).length; i++) {
+          if (Object.values(formData)[i] === "") {
+            const id = Object.keys(formData)[i];
+            const el = document.getElementById(id) as HTMLElement;
+            el.classList.add("invalid");
+          }
+        }
+      });
+    } else filled = true;
+
+    if (filled) {
+      await api({
+        method: "POST",
+        url: "/users/login",
+        data: {
+          username: username,
+          password: password,
+        },
+      })
+        .then((response) => {
+          notify(response.data.message, _theme, "success");
+        })
+        .catch((err) => {
+          notify(err.response.data.message, _theme, "error");
+        });
+    }
+
+    toast.clearWaitingQueue();
+  };
+
   return (
     <Main _theme={_theme}>
+      <ToastContainer limit={1} />
       <aside />
       <div className="content">
         <button className="theme-toggle" onClick={() => themeSwitcher()}>
@@ -144,14 +239,16 @@ function SignIn() {
             </div>
           }
         >
-          <Form _theme={_theme}>
+          <Form id="login-form" _theme={_theme}>
             <div className="group">
               <label htmlFor="username">Username</label>
               <input
                 type="text"
                 name="username"
                 id="username"
+                value={username}
                 autoComplete="username"
+                onChange={onChangeForm}
               />
             </div>
             <div className="group">
@@ -160,6 +257,8 @@ function SignIn() {
                 type="password"
                 name="password"
                 id="password"
+                value={password}
+                onChange={onChangeForm}
                 autoComplete="off"
               />
             </div>
@@ -173,11 +272,7 @@ function SignIn() {
                 Remember Password
               </Checkbox>
             </div>
-            <input
-              type="submit"
-              value="Login"
-              onClick={(e) => e.preventDefault()}
-            />
+            <input type="submit" value="Login" onClick={(e) => loginUser(e)} />
             <div>
               <p>
                 Don't have an account yet? <Link to="/SignUp">Sign Up</Link>
