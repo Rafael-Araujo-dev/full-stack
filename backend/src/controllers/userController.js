@@ -22,14 +22,14 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     // Verifica se o usuário já existe
-    const usernameExists = await User.findOne({username});
+    const usernameExists = await User.findOne({username: username});
     if (usernameExists) {
         res.status(400);
         throw new Error("User already exists");
     }
 
     // Verifica se o email já está cadastrado
-    const emailExists = await User.findOne({email});
+    const emailExists = await User.findOne({email: email});
     if (emailExists) {
         res.status(400);
         throw new Error("Email already registred");
@@ -50,25 +50,72 @@ const registerUser = asyncHandler(async (req, res) => {
 
     // Verifica se o usuário foi criado
     if (user) {
+        // Armazena o token para o usuário
+        user.token = generateToken(user._id, user.email);
+
+        // Retorna novo usuário
         res.status(201).json({
             _id: user.id,
             username: user.username,
             email: user.email,
             birthdate: user.birthdate,
-            token: generateToken(user._id),
+            token: user.token,
             message: "User registered successfully"
         });
     } else {
         res.status(400);
         throw new Error("Invalid user data");
     }
-})
+});
+
+// @desc   Realiza o login
+// @route  POST /api/users/login
+// @access public
+// @params username or email*, password*
+const loginUser = asyncHandler(async (req, res) => {
+    // Recebe os dados da requisição
+    const {
+        username, password
+    } = req.body;
+
+    // Verifica se todos os campos foram preenchidos
+    if (!username || !password) {
+        res.status(400);
+        throw new Error("Please add all fields");
+    }
+
+    // Verifica se o usuário ou email informado está cadastrado
+    const usernameExists = await User.findOne({username: username});
+    const emailExists = await User.findOne({email: username});
+    const user = usernameExists || emailExists;
+
+    // Caso não for encontrado nenhum usuário cadastrado, é retornado uma mensagem de erro
+    if (!user) {
+        res.status(400);
+        throw new Error("Invalid username and/or password, please verify they are correct and try again.");
+    }
+
+    if (user && (await bcrypt.compare(password, user.password))) {
+        // Gera um token para o usuário
+        user.token = generateToken(user._id, user.email);
+
+        // Retorna usuário
+        res.status(201).json({
+            _id: user.id,
+            username: user.username,
+            email: user.email,
+            token: user.token,
+            message: "User logged in successfully"
+        });
+    }
+
+});
 
 // Gera a um token JWT
-const generateToken = (id) => {
-    return jwt.sign({ id }, process.env.JWT_SECRET, { expiresIn: '1d' });
+const generateToken = (id, email) => {
+    return jwt.sign({ id, email }, process.env.JWT_SECRET, { expiresIn: '1d' });
 }
 
 module.exports = {
-    registerUser
+    registerUser, loginUser
 }
