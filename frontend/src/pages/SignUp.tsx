@@ -1,14 +1,10 @@
-import React, { lazy, Suspense, useState, useContext, ReactNode } from "react";
+import React, { Suspense, useState, useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
 import { api } from "../api/api";
-import axios from "axios";
 
 import { Link } from "react-router-dom";
-import { Checkbox } from "@chakra-ui/react";
 import { FaSun, FaMoon } from "react-icons/fa";
-import { FcGoogle, FcSalesPerformance } from "react-icons/fc";
-import { GrFacebook, GrTwitter, GrGithub } from "react-icons/gr";
 import ContentLoader from "react-content-loader";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -156,6 +152,9 @@ function SignUp() {
   const registerUser = async (e: React.FormEvent) => {
     e.preventDefault();
     toast.clearWaitingQueue();
+    const btn = e.target as HTMLInputElement;
+    btn.disabled = true;
+    setTimeout(() => (btn.disabled = false), 3000);
 
     let validated = {
       fields: false,
@@ -170,7 +169,7 @@ function SignUp() {
     if (!username || !email || !birthdate || !password || !confirmPassword) {
       notify("All fields need to be filled", _theme, "error", () => {
         for (let i = 0; i < Object.keys(formData).length; i++) {
-          if (Object.values(formData)[i] == "") {
+          if (Object.values(formData)[i] === "") {
             const id = Object.keys(formData)[i];
             const el = document.getElementById(id) as HTMLElement;
             el.classList.add("invalid");
@@ -188,7 +187,7 @@ function SignUp() {
       } else validated.username = true;
 
       // Verifica se é um email válido
-      const mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      const mailformat = /^\w+([-]?\w+)*@\w+([-]?\w+)*(\.\w{2,3})+$/;
       if (!email.match(mailformat)) {
         const el = document.getElementById("email") as HTMLElement;
         el?.classList.add("invalid");
@@ -217,7 +216,7 @@ function SignUp() {
       } else validated.password = true;
 
       // Verifica se a senha e confirmação de senha estão iguais
-      if (password != confirmPassword) {
+      if (password !== confirmPassword) {
         const el = document.getElementById("confirmPassword") as HTMLElement;
         el?.classList.add("invalid");
         notify("Passwords do not match", _theme, "error");
@@ -235,7 +234,7 @@ function SignUp() {
         validated.password &&
         validated.confirmPassword
       ) {
-        const Register = await api({
+        await api({
           method: "POST",
           url: "/users/register",
           data: {

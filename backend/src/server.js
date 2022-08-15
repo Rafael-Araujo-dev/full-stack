@@ -22,7 +22,6 @@ app.disable("x-powered-by");
 app.use(cors);
 app.use(morgan);
 
-
 app.use(express.json()); // Define os dados recebidos das requisições sendo do tipo JSON Object
 app.use(express.urlencoded({ extended: false}));
 

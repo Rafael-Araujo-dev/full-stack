@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useState, useContext } from "react";
+import React, { Suspense, useState, useContext } from "react";
 import styled from "styled-components";
 import { ThemeContext } from "../context/ThemeProvider";
 

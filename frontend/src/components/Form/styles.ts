@@ -49,7 +49,7 @@ export const Container = styled.form<{_theme?: string}>`
     }
 
     & .for-rules {
-        color: ${ props => props._theme == "Light" ? "#404040" : "#EEE" };
+        color: ${ props => props._theme === "Light" ? "#404040" : "#EEE" };
         transition: color .2s;
         font-size: 0.8rem;
         list-style: none;
