@@ -188,6 +188,11 @@ function SignIn() {
     toast.clearWaitingQueue();
   };
 
+  const unavailableService = (e: React.FormEvent) => {
+    e.preventDefault();
+    notify("Sorry, this sevice is temporarily unavailable", _theme, "error");
+  };
+
   return (
     <Main _theme={_theme}>
       <ToastContainer limit={1} />
@@ -288,7 +293,7 @@ function SignIn() {
             <div>
               <button
                 className="btn-google"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => unavailableService(e)}
               >
                 <FcGoogle
                   size="1.5rem"
@@ -302,7 +307,7 @@ function SignIn() {
             <div>
               <button
                 className="btn-facebook"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => unavailableService(e)}
               >
                 <GrFacebook
                   size="1.5rem"
@@ -316,7 +321,7 @@ function SignIn() {
             <div>
               <button
                 className="btn-twitter"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => unavailableService(e)}
               >
                 <GrTwitter
                   size="1.5rem"
@@ -330,7 +335,7 @@ function SignIn() {
             <div>
               <button
                 className="btn-github"
-                onClick={(e) => e.preventDefault()}
+                onClick={(e) => unavailableService(e)}
               >
                 <GrGithub
                   size="1.5rem"
