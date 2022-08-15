@@ -27,6 +27,9 @@ const userSchema = mongoose.Schema(
             type: Date, // Define o tipo do valor
             required: [true, "Please add a birthdate"],
         },
+        token: {
+            type: String, // Define o tipo do valor
+        },
         avatar: {
             type: String, // Define o tipo do valor
         },
