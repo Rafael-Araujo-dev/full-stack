@@ -191,6 +191,7 @@ function SignIn() {
   const unavailableService = (e: React.FormEvent) => {
     e.preventDefault();
     notify("Sorry, this sevice is temporarily unavailable", _theme, "error");
+    toast.clearWaitingQueue();
   };
 
   return (
