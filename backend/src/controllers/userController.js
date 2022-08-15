@@ -105,7 +105,7 @@ const loginUser = asyncHandler(async (req, res) => {
             username: user.username,
             email: user.email,
             token: user.token,
-            message: "User logged in successfully"
+            message: "User logged in successfully, please wait while being redirected"
         });
     } else {
         res.status(400);
