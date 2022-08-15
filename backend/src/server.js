@@ -1,6 +1,6 @@
 require("dotenv").config(); // Habilita o uso de variáveis de ambiente
+require("./config/db").connectDB(); // Tenta se conectar com o banco de dados
 const express = require("express"); // Importa framework express
-const connectDB = require("./config/db"); // Importa função de conexão com o banco de dados
 const chalk = require("chalk");
 
 // Importação dos middlewares
@@ -12,9 +12,8 @@ const morgan = require("./middlewares/morgan");
 // Define a porta onde nossa aplicação rodará
 const _PORT = process.env.PORT || 5000;
 
-connectDB(); // Tenta se conectar com o banco de dados
-
-const app = express(); // Cria a apliação express
+// Cria a apliação express
+const app = express();
 
 // Inicialização dos middlewares e configurações
 app.use(helmet);

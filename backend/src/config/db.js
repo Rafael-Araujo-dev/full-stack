@@ -2,8 +2,7 @@ const mongoose = require("mongoose");
 const chalk = require("chalk");
 
 // Abre uma conexão com o banco de dados
-const connectDB = async () => {
-    
+module.exports.connectDB = async () => {
     console.log(chalk.yellow.bold("Connecting to MongoDB..."));
     try { // Tenta se conectar com o banco de dados
         const conn = await mongoose.connect(process.env.MONGO_URI); // Função do mongoose de conexão
@@ -15,6 +14,3 @@ const connectDB = async () => {
         process.exit(1);
     }
 }
-
-// Exporta a função de conexão
-module.exports = connectDB;
