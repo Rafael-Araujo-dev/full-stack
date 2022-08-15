@@ -2,6 +2,12 @@
 import Navbar from "../components/layout/Navbar";
 
 function Home() {
+  const redirect = () => {
+    window && window.location.replace("signin");
+  };
+
+  redirect();
+
   return (
     <div>
       <Navbar />
