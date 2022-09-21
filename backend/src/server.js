@@ -25,6 +25,7 @@ app.use(express.urlencoded({ extended: false}));
 
 // Definição das rotas para a nossa aplicação
 app.use("/api/users", require("./routes/userRoutes"));
+app.use("/playground", require("./routes/playgroundRoutes"));
 
 // Define uma rota para verificações da API usando HealthCheck
 app.use("/status", (req, res) => {
